@@ -14,8 +14,8 @@ const TRACKS = [
     note: "Roots-reggae for the giver of fruits; everything green keeps time." },
   { n: 5, title: "The Discord of Melkor", status: "in-progress", audioUrl: null,
     note: "The theme that broke the music. Still being wrestled into shape." },
-  { n: 6, title: "Lúthien's Song", status: "in-progress", audioUrl: null,
-    note: "A love song strong enough to make stone weep. In the workshop." },
-  { n: 7, title: "The Voyage of Eärendil", status: "in-progress", audioUrl: null,
-    note: "One mariner, one star, one impossible westward road. Charting the course." },
+  { n: 6, title: "Lúthien's Song", status: "released", audioUrl: "audio/track06-luthien-song.mp3",
+    note: "A love song strong enough to make stone weep — harp and strings for the nightingale of Doriath." },
+  { n: 7, title: "The Voyage of Eärendil", status: "released", audioUrl: "audio/track07-voyage-of-earendil.mp3",
+    note: "One mariner, one star — a majestic voyage into the peaceful west." },
 ];
