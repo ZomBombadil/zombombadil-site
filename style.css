@@ -206,13 +206,21 @@ h2 {
 
 .track {
   display: grid;
-  grid-template-columns: 52px 1fr auto;
+  grid-template-columns: 64px 52px 1fr auto;
   gap: 16px;
   align-items: center;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 16px 18px;
+}
+
+.track-art {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--line);
 }
 
 .track-num {
@@ -347,5 +355,5 @@ h2 {
 
 @media (min-width: 720px) {
   .section { padding: 110px 32px; }
-  .track { grid-template-columns: 64px 1fr auto; padding: 20px 24px; }
+  .track { grid-template-columns: 64px 64px 1fr auto; padding: 20px 24px; }
 }
