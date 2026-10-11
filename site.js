@@ -118,6 +118,7 @@
     card.className = "track reveal";
     var live = !!(tr.audioUrl && tr.status === "released");
     card.innerHTML =
+      (tr.art ? '<img class="track-art" src="' + tr.art + '" alt="' + escapeHtml(tr.title) + ' artwork" loading="lazy">' : "") +
       '<div class="track-num" aria-hidden="true">' + String(tr.n).padStart(2, "0") + "</div>" +
       '<div><h3>' + escapeHtml(tr.title) + "</h3>" +
       '<p class="track-note">' + escapeHtml(tr.note) + "</p>" +
