@@ -431,3 +431,91 @@ h2 {
   margin: 2rem 0 1rem;
   color: #c8ffd8;
 }
+
+/* ---------- Eru Crystal Ball ---------- */
+#ball-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+#crystal-ball-el {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.35), rgba(125,255,168,0.12) 40%, rgba(0,0,0,0.4) 75%);
+  border: 3px solid rgba(125, 255, 168, 0.5);
+  box-shadow: 0 0 40px rgba(57, 255, 106, 0.4), 0 0 80px rgba(57, 255, 106, 0.2), inset 0 0 40px rgba(125, 255, 168, 0.15);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+#crystal-ball-el:hover { transform: scale(1.05); }
+#crystal-ball-el.shaking { animation: ball-shake 0.8s ease; }
+@keyframes ball-shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  15% { transform: translateX(-12px) rotate(-4deg); }
+  30% { transform: translateX(12px) rotate(4deg); }
+  45% { transform: translateX(-10px) rotate(-3deg); }
+  60% { transform: translateX(10px) rotate(3deg); }
+  75% { transform: translateX(-6px) rotate(-2deg); }
+  90% { transform: translateX(6px) rotate(2deg); }
+}
+#ball-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.9;
+  border: 2px solid rgba(125, 255, 168, 0.4);
+}
+#ball-glow {
+  position: absolute;
+  top: 12%;
+  left: 18%;
+  width: 60px;
+  height: 40px;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.6), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+}
+#ball-answer {
+  min-height: 3rem;
+  font-size: 1.15rem;
+  color: #c8ffd8;
+  max-width: 420px;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  font-style: italic;
+}
+#ball-answer.show { opacity: 1; }
+.ball-input-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+#ball-question {
+  background: rgba(10, 20, 14, 0.8);
+  border: 1px solid #39ff6a;
+  border-radius: 8px;
+  color: #c8ffd8;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  width: 280px;
+  max-width: 90vw;
+}
+#ball-question::placeholder { color: #6a9a7a; }
+#ball-question:focus { outline: none; border-color: #7dffa8; box-shadow: 0 0 12px rgba(57, 255, 106, 0.4); }
+@media (max-width: 600px) {
+  #crystal-ball-el { width: 180px; height: 180px; }
+  #ball-avatar { width: 130px; height: 130px; }
+}
