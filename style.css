@@ -424,3 +424,10 @@ h2 {
   #eru-wrap, #eru-avatar { width: 64px; height: 64px; }
   #eru-bubble { font-size: 11px; }
 }
+
+/* ---------- Games subsections ---------- */
+.subsection-heading {
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+  color: #c8ffd8;
+}
