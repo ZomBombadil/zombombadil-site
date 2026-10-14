@@ -6,6 +6,7 @@
   var canvas = document.getElementById("starfield");
   var ctx = canvas.getContext("2d");
   var stars = [];
+  var bolts = [];
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var W = 0, H = 0, dpr = 1;
   var spriteWhite = null, spriteGreen = null;
@@ -77,6 +78,57 @@
       }
     }
     ctx.globalAlpha = 1;
+    if (!reduced) drawBolts(t);
+  }
+
+  /* ---------- Green lightning bolts (flashing, background) ---------- */
+  function spawnBolt() {
+    var x = Math.random() * W;
+    var y = -20;
+    var segs = 6 + Math.floor(Math.random() * 6);
+    var pts = [{ x: x, y: y }];
+    var cx = x, cy = y;
+    for (var i = 0; i < segs; i++) {
+      cx += (Math.random() - 0.5) * 60;
+      cy += 30 + Math.random() * 50;
+      pts.push({ x: cx, y: cy });
+      if (Math.random() < 0.4) { // branch
+        pts.push({ x: cx + (Math.random() - 0.5) * 80, y: cy + 20 + Math.random() * 30 });
+        pts.push({ x: cx, y: cy });
+      }
+    }
+    bolts.push({ pts: pts, born: performance.now(), life: 180 + Math.random() * 250 });
+  }
+
+  function drawBolts(t) {
+    // Spawn new bolts randomly — roughly one every 1.5–4 seconds
+    if (Math.random() < 0.008) spawnBolt();
+    var now = performance.now();
+    for (var i = bolts.length - 1; i >= 0; i--) {
+      var b = bolts[i];
+      var age = now - b.born;
+      if (age > b.life) { bolts.splice(i, 1); continue; }
+      // Flicker: rapid on/off for a lightning flash feel
+      var flicker = Math.sin(age * 0.09) > -0.2 ? 1 : 0.15;
+      var fade = 1 - age / b.life;
+      var alpha = flicker * fade;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = "#7dffa8";
+      ctx.lineWidth = 2.5;
+      ctx.shadowColor = "#39ff6a";
+      ctx.shadowBlur = 18;
+      ctx.beginPath();
+      ctx.moveTo(b.pts[0].x, b.pts[0].y);
+      for (var j = 1; j < b.pts.length; j++) ctx.lineTo(b.pts[j].x, b.pts[j].y);
+      ctx.stroke();
+      // Core: brighter thinner line
+      ctx.strokeStyle = "#eafff1";
+      ctx.lineWidth = 1;
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.restore();
+    }
   }
 
   var raf = null;
