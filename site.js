@@ -262,3 +262,97 @@
   /* ---------- Footer year ---------- */
   document.getElementById("year").textContent = new Date().getFullYear();
 })();
+
+  /* ---------- Eru wandering avatar ---------- */
+  (function () {
+    var wrap = document.getElementById("eru-wrap");
+    var avatar = document.getElementById("eru-avatar");
+    var bubble = document.getElementById("eru-bubble");
+    if (!wrap || !avatar) return;
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var x = Math.random() * (window.innerWidth - 120) + 20;
+    var y = Math.random() * (window.innerHeight - 200) + 100;
+    var tx = x, ty = y;
+    var dragging = false, dragOffX = 0, dragOffY = 0;
+    var bubbleTimer = null;
+    var phrases = [
+      "🌌 Welcome to the workshop!",
+      "✨ The music is live!",
+      "🎵 Have you heard Melkor yet?",
+      "⚡ Careful — lightning!",
+      "🌟 Seven movements complete!",
+      "🎮 TooDark awaits...",
+      "💚 Green stars forever!",
+      "🔥 Steelstorm is rising!"
+    ];
+
+    function showBubble(text) {
+      bubble.textContent = text;
+      bubble.classList.add("show");
+      clearTimeout(bubbleTimer);
+      bubbleTimer = setTimeout(function () { bubble.classList.remove("show"); }, 2600);
+    }
+
+    function pickTarget() {
+      tx = 20 + Math.random() * (window.innerWidth - 140);
+      ty = 80 + Math.random() * (window.innerHeight - 220);
+    }
+
+    function animate() {
+      if (!dragging) {
+        x += (tx - x) * 0.02;
+        y += (ty - y) * 0.02;
+        if (Math.abs(tx - x) < 5 && Math.abs(ty - y) < 5) {
+          if (Math.random() < 0.003) pickTarget();
+        }
+      }
+      wrap.style.left = x + "px";
+      wrap.style.top = y + "px";
+      requestAnimationFrame(animate);
+    }
+
+    // Click: excited bounce + random phrase
+    avatar.addEventListener("click", function () {
+      if (dragging) return;
+      wrap.classList.add("eru-excited");
+      showBubble(phrases[Math.floor(Math.random() * phrases.length)]);
+      setTimeout(function () { wrap.classList.remove("eru-excited"); }, 1600);
+    });
+
+    // Drag: grab and move
+    avatar.addEventListener("mousedown", function (e) {
+      dragging = true;
+      dragOffX = e.clientX - x;
+      dragOffY = e.clientY - y;
+    });
+    avatar.addEventListener("touchstart", function (e) {
+      dragging = true;
+      var t = e.touches[0];
+      dragOffX = t.clientX - x;
+      dragOffY = t.clientY - y;
+    }, { passive: true });
+    document.addEventListener("mousemove", function (e) {
+      if (!dragging) return;
+      x = e.clientX - dragOffX;
+      y = e.clientY - dragOffY;
+      tx = x; ty = y;
+    });
+    document.addEventListener("touchmove", function (e) {
+      if (!dragging) return;
+      var t = e.touches[0];
+      x = t.clientX - dragOffX;
+      y = t.clientY - dragOffY;
+      tx = x; ty = y;
+    }, { passive: true });
+    document.addEventListener("mouseup", function () {
+      if (dragging) { dragging = false; pickTarget(); }
+    });
+    document.addEventListener("touchend", function () {
+      if (dragging) { dragging = false; pickTarget(); }
+    });
+
+    // Say hi after a moment
+    setTimeout(function () { showBubble("🌌 Hey! I'm Eru — click me!"); }, 2000);
+    if (!reduced) { pickTarget(); animate(); }
+    else { wrap.style.left = x + "px"; wrap.style.top = y + "px"; }
+  })();
