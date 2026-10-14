@@ -365,3 +365,60 @@ h2 {
   .section { padding: 110px 32px; }
   .track { grid-template-columns: 64px 64px 1fr auto; padding: 20px 24px; }
 }
+
+/* ---------- Eru wandering avatar ---------- */
+#eru-wrap {
+  position: fixed;
+  width: 88px;
+  height: 88px;
+  z-index: 999;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+  will-change: left, top;
+}
+#eru-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 3px solid #7dffa8;
+  box-shadow: 0 0 24px rgba(57, 255, 106, 0.6), 0 0 48px rgba(57, 255, 106, 0.25);
+  object-fit: cover;
+  cursor: grab;
+  pointer-events: auto;
+  transition: transform 0.2s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#eru-avatar:hover { transform: scale(1.12); }
+#eru-avatar:active { cursor: grabbing; transform: scale(0.95); }
+#eru-wrap.eru-excited #eru-avatar {
+  animation: eru-bounce 0.5s ease 3;
+  border-color: #eafff1;
+  box-shadow: 0 0 36px rgba(234, 255, 241, 0.9), 0 0 64px rgba(57, 255, 106, 0.5);
+}
+@keyframes eru-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-16px) scale(1.1); }
+}
+#eru-bubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 20, 14, 0.92);
+  color: #c8ffd8;
+  border: 1px solid #39ff6a;
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 13px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  margin-bottom: 8px;
+}
+#eru-bubble.show { opacity: 1; }
+@media (max-width: 600px) {
+  #eru-wrap, #eru-avatar { width: 64px; height: 64px; }
+  #eru-bubble { font-size: 11px; }
+}
