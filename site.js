@@ -409,3 +409,94 @@
     if (!reduced) { pickTarget(); animate(); }
     else { wrap.style.left = x + "px"; wrap.style.top = y + "px"; }
   })();
+
+  /* ---------- Eru Crystal Ball — Magic 8 Ball oracle ---------- */
+  (function () {
+    var ball = document.getElementById("crystal-ball-el");
+    var answerEl = document.getElementById("ball-answer");
+    var input = document.getElementById("ball-question");
+    var askBtn = document.getElementById("ball-ask");
+    if (!ball || !answerEl) return;
+
+    var answers = [
+      // Classic Magic 8 Ball — Eru style
+      "🔮 The stars say YES. Go now.",
+      "🌟 Without a doubt — the stars are aligned.",
+      "✨ It is certain. The crystal does not lie.",
+      "💚 Yes — and the green stars approve.",
+      "⚡ Signs point to yes. Lightning confirms it.",
+      "🎵 The music says yes. Listen and you'll know.",
+      "🌌 As the stars shine, so shall it be.",
+      "🔮 Reply hazy — ask again after listening to Melkor.",
+      "🌫️ The mists are thick. Try again later.",
+      "🤔 Cannot predict now — the crystal is buffering.",
+      "🌙 Ask again when the moon is up.",
+      "💭 The answer hides in the music. Go listen first.",
+      "🚫 Don't count on it — the stars are shaking their heads.",
+      "🌑 My reply is no. The void agrees.",
+      "😤 Outlook not so good. But hey — prove the ball wrong.",
+      "⚠️ Very doubtful. The lightning says otherwise.",
+      "🎮 Ask again after playing Hatchem!. Priorities.",
+      "🎵 The crystal hears only music. Go listen, then ask.",
+      "🧭 Follow the North Star. The answer is that way.",
+      "🌌 The Ainur are divided on this one. Ask again.",
+      "💚 Green light! Go for it!",
+      "🔥 The Steelstorm says YES. Feel the rift.",
+      "🎭 The ball is amused. Ask a better question.",
+      "🌟 The stars whisper: yes, but not yet. Patience.",
+      "⚡ The lightning strikes YES. Boldly.",
+      "🎵 Rodeo Mirage says: ride on. The answer is yes.",
+      "🌌 Eru Ilúvatar speaks: it is so.",
+      "🔮 The crystal clouds over... try a different question.",
+      "💫 Signs point to yes — with a side of chaos.",
+      "🎮 The ball says: play first, decide later."
+    ];
+
+    // Keyword-aware responses — the ball "listens"
+    function smartAnswer(q) {
+      q = (q || "").toLowerCase();
+      if (q.includes("music") || q.includes("listen") || q.includes("song"))
+        return "🎵 The crystal hums a tune: YES. Go listen to the music RIGHT NOW.";
+      if (q.includes("toodark") || q.includes("game") || q.includes("play"))
+        return "🎮 The ball glows green: YES. Play the games. Hatchem! is solid.";
+      if (q.includes("love") || q.includes("crush") || q.includes("like me"))
+        return "💚 The stars smile on you. Go tell them how you feel.";
+      if (q.includes("money") || q.includes("rich") || q.includes("job"))
+        return "💰 The crystal sees coins... eventually. Keep building.";
+      if (q.includes("should i") || q.includes("do i"))
+        return "🌟 The ball says: trust your gut. It knows more than the crystal.";
+      if (q.includes("tomorrow") || q.includes("future"))
+        return "🔮 The future is unwritten. But the stars lean YES.";
+      if (q.includes("scared") || q.includes("afraid") || q.includes("worried"))
+        return "🌌 Fear is just the dark before dawn. The stars are with you.";
+      if (q.includes("eru") || q.includes("you"))
+        return "🌌 I am Eru, maker of stars and songs. And yes — I approve.";
+      if (q.includes("steelstorm") || q.includes("rift"))
+        return "⚡ The Steelstorm rift crackles: YES. Feel the storm.";
+      if (q.includes("north star") || q.includes("compass"))
+        return "🧭 Follow the North Star. It never steers wrong.";
+      if (!q.trim()) return "🔮 The ball needs a question first! Type one above.";
+      return answers[Math.floor(Math.random() * answers.length)];
+    }
+
+    var busy = false;
+    function ask() {
+      if (busy) return;
+      busy = true;
+      var q = input ? input.value : "";
+      answerEl.classList.remove("show");
+      ball.classList.add("shaking");
+      setTimeout(function () {
+        ball.classList.remove("shaking");
+        answerEl.textContent = smartAnswer(q);
+        answerEl.classList.add("show");
+        busy = false;
+      }, 900);
+    }
+
+    ball.addEventListener("click", ask);
+    if (askBtn) askBtn.addEventListener("click", ask);
+    if (input) input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") ask();
+    });
+  })();
