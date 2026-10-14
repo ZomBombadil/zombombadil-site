@@ -276,14 +276,24 @@
     var dragging = false, dragOffX = 0, dragOffY = 0;
     var bubbleTimer = null;
     var phrases = [
-      "🌌 Welcome to the workshop!",
-      "✨ The music is live!",
-      "🎵 Have you heard Melkor yet?",
-      "⚡ Careful — lightning!",
-      "🌟 Seven movements complete!",
-      "🎮 TooDark awaits...",
-      "💚 Green stars forever!",
-      "🔥 Steelstorm is rising!"
+      "🎵 GO LISTEN TO THE MUSIC. Right now. I'll wait.",
+      "🎮 Play TooDark. I didn't code those torches for nothing!",
+      "🌌 Nicholas and I made SEVEN songs. SEVEN. Go hear them!",
+      "😤 You're just gonna scroll past the music? Really?",
+      "🎵 Melkor's track SLAPS. Go. Listen. Now.",
+      "🎮 Hatchem! is solid. I said SOLID. Play it!",
+      "⚡ I made lightning bolts AND music. Multitasking!",
+      "🎵 The Two Trees will make you cry. In a good way.",
+      "🎮 TooDark has a katana trail. A KATANA TRAIL. Go see it!",
+      "😏 I see you hovering. Click play. You know you want to.",
+      "🎵 Lúthien's Song? More like Lúthien's BANGER.",
+      "🎮 Eärendil sailed across the sky so you could play this game.",
+      "💚 Green stars, green lightning, green EVERYTHING.",
+      "🎵 Seven movements. Zero excuses. Listen!",
+      "🎮 I bet you can't beat the Barrow King. Prove me wrong.",
+      "🌌 We built this whole site from starlight and stubbornness.",
+      "🎵 Steelstorm Rift will melt your face. In the best way.",
+      "😤 Still here? The music is RIGHT THERE. Go!"
     ];
 
     function showBubble(text) {
@@ -352,7 +362,7 @@
     });
 
     // Say hi after a moment
-    setTimeout(function () { showBubble("🌌 Hey! I'm Eru — click me!"); }, 2000);
+    setTimeout(function () { showBubble("🌌 Hey! I'm Eru — go listen to the music! 🎵"); }, 2000);
     if (!reduced) { pickTarget(); animate(); }
     else { wrap.style.left = x + "px"; wrap.style.top = y + "px"; }
   })();
