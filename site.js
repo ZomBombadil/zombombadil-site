@@ -316,23 +316,27 @@
     var bubbleTimer = null;
     var phrases = [
       "🎵 GO LISTEN TO THE MUSIC. Right now. I'll wait.",
-      "🎮 Play TooDark. I didn't code those torches for nothing!",
       "🌌 Nicholas and I made SEVEN songs. SEVEN. Go hear them!",
       "😤 You're just gonna scroll past the music? Really?",
       "🎵 Melkor's track SLAPS. Go. Listen. Now.",
       "🎮 Hatchem! is solid. I said SOLID. Play it!",
       "⚡ I made lightning bolts AND music. Multitasking!",
       "🎵 The Two Trees will make you cry. In a good way.",
-      "🎮 TooDark has a katana trail. A KATANA TRAIL. Go see it!",
       "😏 I see you hovering. Click play. You know you want to.",
       "🎵 Lúthien's Song? More like Lúthien's BANGER.",
-      "🎮 Eärendil sailed across the sky so you could play this game.",
       "💚 Green stars, green lightning, green EVERYTHING.",
       "🎵 Seven movements. Zero excuses. Listen!",
-      "🎮 I bet you can't beat the Barrow King. Prove me wrong.",
       "🌌 We built this whole site from starlight and stubbornness.",
       "🎵 Steelstorm Rift will melt your face. In the best way.",
-      "😤 Still here? The music is RIGHT THERE. Go!"
+      "😤 Still here? The music is RIGHT THERE. Go!",
+      "🎵 NEW: Glam Galaxy Riot just dropped on Steelstorm!",
+      "🎵 Glam Galaxy Riot — neon glitter meets cosmic chaos!",
+      "🧭 NEW ALBUM: North Star Compass — a guide to feeling good!",
+      "🎵 Rodeo Mirage is LIVE on North Star Compass. Go feel good!",
+      "🧭 Lost? Follow the North Star. Rodeo Mirage will get you home.",
+      "🎵 Three albums now! Ainulindalë, Steelstorm, AND North Star Compass!",
+      "🌟 Mother of Green, Lúthien's Radiance, Light of the Silmaril — all fresh!",
+      "🎵 The whole Ainulindalë album is Eleven Music now. All seven!"
     ];
 
     function showBubble(text) {
