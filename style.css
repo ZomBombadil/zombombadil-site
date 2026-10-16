@@ -293,6 +293,11 @@ h2 {
   border: 1px solid var(--line);
   margin: 12px 0 4px;
 }
+/* Square game icon: show the whole icon, don't crop it. */
+.card-thumb-icon {
+  object-fit: contain;
+  background: #000;
+}
 .card-badge {
   position: absolute;
   top: 18px;
