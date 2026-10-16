@@ -284,6 +284,45 @@
     });
   }
 
+  /* ---------- Warlords and Conquerors tracklist ---------- */
+  var warlordsList = document.getElementById("warlords-list");
+  if (warlordsList) {
+    (typeof WARLORDS_TRACKS !== "undefined" ? WARLORDS_TRACKS : []).forEach(function (tr) {
+      var card = document.createElement("article");
+      card.className = "track reveal";
+      var live = !!(tr.audioUrl && tr.status === "released");
+      card.innerHTML =
+        (tr.art ? '<img class="track-art" src="' + tr.art + '" alt="' + escapeHtml(tr.title) + ' artwork" loading="lazy">' : "") +
+        '<div class="track-num" aria-hidden="true">' + String(tr.n).padStart(2, "0") + "</div>" +
+        '<div><h3>' + escapeHtml(tr.title) + "</h3>" +
+        '<p class="track-note">' + escapeHtml(tr.note) + "</p>" +
+        badge(tr.status) + "</div>";
+      var btn = document.createElement("button");
+      btn.className = "play-btn" + (live ? " live" : "");
+      btn.setAttribute("data-title", tr.title);
+      btn.innerHTML = "&#9654;";
+      if (live) {
+        btn.setAttribute("aria-label", tr.title + " — play");
+        btn.addEventListener("click", function () {
+          if (currentBtn === btn && !player.paused) { stopCurrent(); return; }
+          stopCurrent();
+          player.src = tr.audioUrl;
+          player.play().then(function () {
+            btn.innerHTML = "&#10074;&#10074;";
+            btn.setAttribute("aria-label", tr.title + " — pause");
+            card.classList.add("now-playing");
+            currentBtn = btn;
+          }).catch(function () { stopCurrent(); });
+        });
+      } else {
+        btn.setAttribute("aria-label", tr.title + " — audio coming soon");
+        btn.title = "Audio coming soon";
+      }
+      card.appendChild(btn);
+      warlordsList.appendChild(card);
+    });
+  }
+
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
