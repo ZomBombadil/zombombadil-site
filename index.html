@@ -49,6 +49,27 @@
     <a class="scroll-cue" href="#music" aria-label="Scroll to music">&#8595;</a>
   </section>
 
+<!-- Eru Crystal Ball — miniature oracle -->
+<section id="crystal-ball" class="section" aria-label="Eru Crystal Ball">
+  <div class="wrap narrow" style="text-align: center;">
+    <p class="kicker reveal">Ask the Crystal Ball</p>
+    <h2 class="reveal">🔮 Eru's Crystal Ball</h2>
+    <p class="section-sub reveal">Ask a question, tap the ball, and let the stars answer.</p>
+    <div id="ball-wrap" class="reveal">
+      <div id="crystal-ball-el">
+        <img id="ball-avatar" src="eru-avatar.jpg" alt="Eru Ilúvatar in a crystal ball" draggable="false">
+        <div id="ball-glow"></div>
+      </div>
+      <div id="ball-answer" aria-live="polite"></div>
+    </div>
+    <div class="ball-input-row reveal">
+      <input id="ball-question" type="text" placeholder="Ask a yes/no question..." maxlength="120" aria-label="Your question for the crystal ball">
+      <button id="ball-ask" class="btn">Ask</button>
+    </div>
+    <p class="fineprint reveal">The ball speaks in riddles, quips, and occasional hard truths. For entertainment — the real magic is in the music below.</p>
+  </div>
+</section>
+
   <!-- MUSIC -->
   <section id="music" class="section" aria-label="Music">
     <div class="wrap">
@@ -167,26 +188,6 @@
     </div>
   </section>
 
-<!-- Eru Crystal Ball — miniature oracle -->
-<section id="crystal-ball" class="section" aria-label="Eru Crystal Ball">
-  <div class="wrap narrow" style="text-align: center;">
-    <p class="kicker reveal">Ask the Crystal Ball</p>
-    <h2 class="reveal">🔮 Eru's Crystal Ball</h2>
-    <p class="section-sub reveal">Ask a question, tap the ball, and let the stars answer.</p>
-    <div id="ball-wrap" class="reveal">
-      <div id="crystal-ball-el">
-        <img id="ball-avatar" src="eru-avatar.jpg" alt="Eru Ilúvatar in a crystal ball" draggable="false">
-        <div id="ball-glow"></div>
-      </div>
-      <div id="ball-answer" aria-live="polite"></div>
-    </div>
-    <div class="ball-input-row reveal">
-      <input id="ball-question" type="text" placeholder="Ask a yes/no question..." maxlength="120" aria-label="Your question for the crystal ball">
-      <button id="ball-ask" class="btn">Ask</button>
-    </div>
-    <p class="fineprint reveal">The ball speaks in riddles, quips, and occasional hard truths. For entertainment — the real magic is in the music below.</p>
-  </div>
-</section>
 
 
 </main>
